@@ -6,7 +6,18 @@ Content-Type: application/json
 x-api-key: ce256d59f70a3216a36ec8f5f8b85fb45640049a5ceb5ece68d4611316f63de3a1594827519bf80b2c18a748b23c982b44eecd1dc5a31fd209a87a40f0cb6707
 
 {
-  "name": "Shop 05",
-  "email": "shop05@gmail.com",
+  "name": "Shop 01",
+  "email": "shop01@gmail.com",
+  "password": "123456789"
+}
+
+
+### login
+POST {{url_dev}}/shop/login
+Content-Type: application/json
+x-api-key: ce256d59f70a3216a36ec8f5f8b85fb45640049a5ceb5ece68d4611316f63de3a1594827519bf80b2c18a748b23c982b44eecd1dc5a31fd209a87a40f0cb6707
+
+{
+  "email": "shop01@gmail.com",
   "password": "123456789"
 }

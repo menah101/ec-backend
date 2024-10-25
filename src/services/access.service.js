@@ -17,6 +17,12 @@ const RoleShop = {
 };
 
 class AccessService {
+  static logout = async ({ keyStore }) => {
+    console.log(keyStore);
+    const deleteKey = await KeyTokenService.removeKeyById(keyStore._id);
+    return deleteKey
+  };
+
   static login = async ({ email, password, refreshToken = null }) => {
     const foundShop = await findByEmail({ email });
     if (!foundShop) throw new BadRequestError("Shop not registered");
@@ -27,15 +33,15 @@ class AccessService {
     const privateKey = crypto.randomBytes(64).toString("hex");
     const publicKey = crypto.randomBytes(64).toString("hex");
 
-    const { _id: userId } = foundShop
+    const { _id: userId } = foundShop;
     const tokens = await createTokenPair({ userId, email }, publicKey, privateKey);
 
     await KeyTokenService.createKeyToken({
       refreshToken: tokens.refreshToken,
       privateKey,
       publicKey,
-      userId
-    })
+      userId,
+    });
 
     return {
       shop: getInfoData({ fields: ["_id", "name", "email"], object: foundShop }),
@@ -60,7 +66,6 @@ class AccessService {
     if (newShop) {
       const privateKey = crypto.randomBytes(64).toString("hex");
       const publicKey = crypto.randomBytes(64).toString("hex");
-
 
       const keyStore = await KeyTokenService.createKeyToken({
         userId: newShop._id,

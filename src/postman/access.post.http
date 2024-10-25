@@ -21,3 +21,11 @@ x-api-key: ce256d59f70a3216a36ec8f5f8b85fb45640049a5ceb5ece68d4611316f63de3a1594
   "email": "shop01@gmail.com",
   "password": "123456789"
 }
+
+
+### logout
+POST {{url_dev}}/shop/logout
+Content-Type: application/json
+x-api-key: ce256d59f70a3216a36ec8f5f8b85fb45640049a5ceb5ece68d4611316f63de3a1594827519bf80b2c18a748b23c982b44eecd1dc5a31fd209a87a40f0cb6707
+x-client-id: 671b4f04f6e8f56e2859e99e
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzFiNGYwNGY2ZThmNTZlMjg1OWU5OWUiLCJlbWFpbCI6InNob3AwMUBnbWFpbC5jb20iLCJpYXQiOjE3Mjk4NDU5MDgsImV4cCI6MTczMDAxODcwOH0.mgqgfvRUb2ifh_paBcRNzZa4E94Lpil2CLYgQmRHwic

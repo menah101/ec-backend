@@ -4,9 +4,9 @@ const bcrypt = require("bcrypt");
 const crypto = require("crypto");
 const shopModel = require("../models/shop.model");
 const KeyTokenService = require("./keyToken.service");
-const { createTokenPair } = require("../auth/authUtils");
+const { createTokenPair, verifyJWT } = require("../auth/authUtils");
 const { getInfoData } = require("../utils");
-const { BadRequestError, AuthFailureError } = require("../core/error.response");
+const { BadRequestError, AuthFailureError, ForbiddenError } = require("../core/error.response");
 const { findByEmail } = require("./shop.service");
 
 const RoleShop = {
@@ -17,10 +17,43 @@ const RoleShop = {
 };
 
 class AccessService {
+  static handleRefreshToken = async (refreshToken) => {
+    const foundToken = await KeyTokenService.findByRefreshTokenUsed(refreshToken);
+    if (foundToken) {
+      const { userId, email } = await verifyJWT(refreshToken, foundToken.privateKey);
+      await KeyTokenService.deleteKeyById(userId);
+      throw new ForbiddenError("Something went wrong!. Pls login again");
+    }
+
+    const holderToken = await KeyTokenService.findByRefreshToken(refreshToken);
+    if (!holderToken) throw new AuthFailureError("Shop not registered");
+
+    const { userId, email } = await verifyJWT(refreshToken, holderToken.privateKey);
+
+    const foundShop = await findByEmail({ email });
+    if (!foundShop) throw new AuthFailureError("Shop not registered");
+
+    const tokens = await createTokenPair({ userId, email }, holderToken.publicKey, holderToken.privateKey);
+
+    await KeyTokenService.update({
+      $set: {
+        refreshToken: tokens.refreshToken,
+      },
+      $addToSet: {
+        refreshTokensUsed: refreshToken,
+      },
+    });
+
+    return {
+      user: { userId, email },
+      tokens,
+    };
+  };
+
   static logout = async ({ keyStore }) => {
     console.log(keyStore);
     const deleteKey = await KeyTokenService.removeKeyById(keyStore._id);
-    return deleteKey
+    return deleteKey;
   };
 
   static login = async ({ email, password, refreshToken = null }) => {

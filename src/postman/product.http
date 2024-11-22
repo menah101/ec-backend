@@ -1,0 +1,79 @@
+@url_dev=http://localhost:3000/v1/api
+
+POST {{url_dev}}/product
+Content-Type: application/json
+x-api-key: ce256d59f70a3216a36ec8f5f8b85fb45640049a5ceb5ece68d4611316f63de3a1594827519bf80b2c18a748b23c982b44eecd1dc5a31fd209a87a40f0cb6707
+x-client-id: 671b4f04f6e8f56e2859e99e
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzFiNGYwNGY2ZThmNTZlMjg1OWU5OWUiLCJlbWFpbCI6InNob3AwMUBnbWFpbC5jb20iLCJpYXQiOjE3MzIwOTE5NjcsImV4cCI6MTczMjI2NDc2N30.E_QppHuGl2GYZTW9giv91BFCC7aNlye-z9i6EJx-6J0
+
+{
+  "product_name": "Quần áo giá trị cao",
+  "product_description": "High quantity denim jeans",
+  "product_price": 50,
+  "product_shop": "671b4f04f6e8f56e2859e99e",
+  "product_type": "Clothing",
+  "product_thumb": "product-thumb",
+  "product_quantity": 5,
+  "product_attributes": {
+    "brand": "China",
+    "size": "XL",
+    "material": "Thun"
+  }
+}
+
+### Update product by id
+PATCH  {{url_dev}}/product/673ea37220f5952bd8a0d415
+Content-Type: application/json
+x-api-key: ce256d59f70a3216a36ec8f5f8b85fb45640049a5ceb5ece68d4611316f63de3a1594827519bf80b2c18a748b23c982b44eecd1dc5a31fd209a87a40f0cb6707
+x-client-id: 671b4f04f6e8f56e2859e99e
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzFiNGYwNGY2ZThmNTZlMjg1OWU5OWUiLCJlbWFpbCI6InNob3AwMUBnbWFpbC5jb20iLCJpYXQiOjE3MzIwOTE5NjcsImV4cCI6MTczMjI2NDc2N30.E_QppHuGl2GYZTW9giv91BFCC7aNlye-z9i6EJx-6J0
+
+{
+
+  "product_price": 100,
+  "product_quantity": 30,
+  "product_type": "Clothing",
+  "product_attributes": {
+    "brand": "China3"
+  }
+}
+
+### Get all Drafts shop
+GET {{url_dev}}/product/drafts/all
+Content-Type: application/json
+x-api-key: ce256d59f70a3216a36ec8f5f8b85fb45640049a5ceb5ece68d4611316f63de3a1594827519bf80b2c18a748b23c982b44eecd1dc5a31fd209a87a40f0cb6707
+x-client-id: 671b4f04f6e8f56e2859e99e
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzFiNGYwNGY2ZThmNTZlMjg1OWU5OWUiLCJlbWFpbCI6InNob3AwMUBnbWFpbC5jb20iLCJpYXQiOjE3MzIwOTE5NjcsImV4cCI6MTczMjI2NDc2N30.E_QppHuGl2GYZTW9giv91BFCC7aNlye-z9i6EJx-6J0
+
+### Get all Published shop
+GET {{url_dev}}/product/published/all
+Content-Type: application/json
+x-api-key: ce256d59f70a3216a36ec8f5f8b85fb45640049a5ceb5ece68d4611316f63de3a1594827519bf80b2c18a748b23c982b44eecd1dc5a31fd209a87a40f0cb6707
+x-client-id: 671b4f04f6e8f56e2859e99e
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzFiNGYwNGY2ZThmNTZlMjg1OWU5OWUiLCJlbWFpbCI6InNob3AwMUBnbWFpbC5jb20iLCJpYXQiOjE3MzIwOTE5NjcsImV4cCI6MTczMjI2NDc2N30.E_QppHuGl2GYZTW9giv91BFCC7aNlye-z9i6EJx-6J0
+
+### publish product shop by id
+POST {{url_dev}}/product/publish/673ea37220f5952bd8a0d415
+Content-Type: application/json
+x-api-key: ce256d59f70a3216a36ec8f5f8b85fb45640049a5ceb5ece68d4611316f63de3a1594827519bf80b2c18a748b23c982b44eecd1dc5a31fd209a87a40f0cb6707
+x-client-id: 671b4f04f6e8f56e2859e99e
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzFiNGYwNGY2ZThmNTZlMjg1OWU5OWUiLCJlbWFpbCI6InNob3AwMUBnbWFpbC5jb20iLCJpYXQiOjE3MzIwOTE5NjcsImV4cCI6MTczMjI2NDc2N30.E_QppHuGl2GYZTW9giv91BFCC7aNlye-z9i6EJx-6J0
+
+### unpublish product shop by id
+POST {{url_dev}}/product/unpublish/673ea37220f5952bd8a0d415
+Content-Type: application/json
+x-api-key: ce256d59f70a3216a36ec8f5f8b85fb45640049a5ceb5ece68d4611316f63de3a1594827519bf80b2c18a748b23c982b44eecd1dc5a31fd209a87a40f0cb6707
+x-client-id: 671b4f04f6e8f56e2859e99e
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzFiNGYwNGY2ZThmNTZlMjg1OWU5OWUiLCJlbWFpbCI6InNob3AwMUBnbWFpbC5jb20iLCJpYXQiOjE3MzIwOTE5NjcsImV4cCI6MTczMjI2NDc2N30.E_QppHuGl2GYZTW9giv91BFCC7aNlye-z9i6EJx-6J0
+
+### get list search key by user
+GET {{url_dev}}/product/search/quantity
+x-api-key: ce256d59f70a3216a36ec8f5f8b85fb45640049a5ceb5ece68d4611316f63de3a1594827519bf80b2c18a748b23c982b44eecd1dc5a31fd209a87a40f0cb6707
+
+### get list products
+GET {{url_dev}}/product
+x-api-key: ce256d59f70a3216a36ec8f5f8b85fb45640049a5ceb5ece68d4611316f63de3a1594827519bf80b2c18a748b23c982b44eecd1dc5a31fd209a87a40f0cb6707
+
+### get product by id
+GET {{url_dev}}/product/673ea37220f5952bd8a0d415
+x-api-key: ce256d59f70a3216a36ec8f5f8b85fb45640049a5ceb5ece68d4611316f63de3a1594827519bf80b2c18a748b23c982b44eecd1dc5a31fd209a87a40f0cb6707
